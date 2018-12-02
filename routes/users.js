@@ -10,22 +10,23 @@ router.get('/', function(req, res, next) {
 
 router.get('/test', function(req, res, next) {
   var user = new User({
-    uid: 1,
+    uid: 1000,
     username: 'nuanfeng'
   })
  
   user.save(function(err){
+    console.log(err);
     if(err) {
-      res.end('Error');
+      res.end('Error 1');
       return next();
     }
  
     User.find({}, function(err, docs) {
       if(err) {
-        res.end('Error');
+        res.end('Error 2');
         return next();
       }
- 
+      console.log(docs);
       res.json(docs);
     })
   })
